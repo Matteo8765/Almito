@@ -3,9 +3,7 @@
 
 #include <iostream>
 #include <string>
-//#include "saleh.h"
-//#include "spera.h"
-//#include "vecchia.h"
+
 
 using namespace std;
 
