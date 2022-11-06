@@ -38,6 +38,11 @@ PREMIO premios[N];
 int main(void)
 {
 
+
+
+    cout << "Digite a opção desejada: ";
+    cout << "\n 1- Para Inseir na Posição K+1, 2- Para Procurar um nó por nome do prêmio";
+
     addFim();
     cout << endl << premios[final].nome << endl;
 }
