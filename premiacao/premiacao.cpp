@@ -35,11 +35,11 @@ int addFim()
     {
         final++;
         cout << "\nNome: ";
-        std::cin >> premios[final].nome; // é necessário colocar std:: antes de cin, já que cin é de um namespace, e string e vetor são de outro;
+        cin >> premios[final].nome; // é necessário colocar  antes de cin, já que cin é de um namespace, e string e vetor são de outro;
         cout << "\nPreço: ";
-        std::cin >> premios[final].preco;
+        cin >> premios[final].preco;
         cout << "\nID: ";
-        std::cin >> premios[final].id;
+        cin >> premios[final].id;
         premios[final].vendido = false;
     }
     else cout << "A listagem máxima de prêmios já foi atingida\n";
