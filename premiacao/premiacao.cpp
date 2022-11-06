@@ -39,7 +39,7 @@ int main(void)
 
 
     cout << "Digite a opção desejada: ";
-    cout << "\n 1- Para Inseir na Posição K+1, 2- Para Procurar um nó por nome do prêmio";
+    cout << "\n 1- Para Inseir na Posição K+1 \n 2- Para Procurar um nó por nome do prêmio e inserir um novo nó anterior ao nó encontrado \n 3 - Procurar um nó por quantidade de prêmios disponível e alterar o conteúdo do nó encontrado \n 4 - Consultar o nó anterior ao da posição k + 1 \n 5 - Remover na posição k \n 6 - Procurar um nó e remover o novo nó na posição anterior ao nó encontrado \n 7 - Verificar se um prêmio pertence à lista e imprimir o conteúdo do nó anterior \n 8 - Imprimir a quantidade de nós com preço maior que R$50,00 \n 9 - Procurar um nó e alterar o conteúdo do nó posterior encontrado \n 10 - Imprimir relatório dos prêmios vendidos e calcular no final o montante arrecadado \n 11 - Imprimir o conteúdo da lista \n 12 - Classificar a lista por ordem de quantidade de prêmios disponíveis \n 13 - Imprimir a lista os nós que estão armazenados nos índices impares.";
 
     addFim();
     cout << endl << premios[final].nome << endl;
@@ -69,7 +69,7 @@ int addFim()
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
 // Debug program: F5 or Debug > Start Debugging menu
 
-// Tips for Getting Started: 
+// Tips for Getting Started:
 //   1. Use the Solution Explorer window to add/manage files
 //   2. Use the Team Explorer window to connect to source control
 //   3. Use the Output window to see build output and other messages
