@@ -35,7 +35,8 @@ int addFim()
     {
         final++;
         cout << "\nNome: ";
-        cin >> premios[final].nome; // é necessário colocar  antes de cin, já que cin é de um namespace, e string e vetor são de outro;
+
+        getline(cin, premios[final].nome);
         cout << "\nPreço: ";
         cin >> premios[final].preco;
         cout << "\nID: ";
