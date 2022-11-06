@@ -17,6 +17,19 @@ typedef struct PREMIO {
 } PREMIO;
 
 int addFim();
+int ope1();
+int ope2();
+int ope3();
+int ope4();
+int ope5();
+int ope6();
+int ope7();
+int ope8();
+int ope9();
+int ope10();
+int ope11();
+int ope12();
+int ope13();
 
 int final = -1; // índice do último item daa lista. Caso final seja -1, a lista é vazia
 const int N = 3;
@@ -24,6 +37,7 @@ PREMIO premios[N];
 
 int main(void)
 {
+
     addFim();
     cout << endl << premios[final].nome << endl;
 }
