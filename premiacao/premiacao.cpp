@@ -3,7 +3,6 @@
 
 #include <iostream>
 #include <string>
-#include "definicao.h"
 //#include "saleh.h"
 //#include "spera.h"
 //#include "vecchia.h"
@@ -19,7 +18,7 @@ typedef struct PREMIO {
 
 int addFim();
 
-int final = -1; // �ndice do �ltimo item da lista. Caso final seja -1, a lista � vazia
+int final = -1; // índice do último item daa lista. Caso final seja -1, a lista é vazia
 const int N = 3;
 PREMIO premios[N];
 
@@ -32,18 +31,18 @@ int main(void)
 
 int addFim()
 {
-    if (final < N - 1) //verifica se h� espa�o na lista
+    if (final < N - 1) //verifica se há espaço na lista
     {
         final++;
         cout << "\nNome: ";
-        std::cin >> premios[final].nome; // � necess�rio colocar std:: antes de cin, j� que cin � de um namespace, e string e vetor s�o de outro;
-        cout << "\nPre�o: ";
+        std::cin >> premios[final].nome; // é necessário colocar std:: antes de cin, já que cin é de um namespace, e string e vetor são de outro;
+        cout << "\nPreço: ";
         std::cin >> premios[final].preco;
         cout << "\nID: ";
         std::cin >> premios[final].id;
         premios[final].vendido = false;
     }
-    else cout << "A listagem m�xima de pr�mios j� foi atingida\n";
+    else cout << "A listagem máxima de prêmios já foi atingida\n";
     return 0;
 }
 
