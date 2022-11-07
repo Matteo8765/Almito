@@ -6,6 +6,7 @@
 #include <string>
 #include <clocale>
 
+
 using namespace std;
 
 typedef struct PREMIO {
@@ -14,6 +15,7 @@ typedef struct PREMIO {
     double preco;
     bool vendido;
 } PREMIO;
+
 
 int addFim();
 int ope1(); // Inserir na posição K+1
@@ -29,6 +31,7 @@ int ope10();
 int ope11(); // Imprimir o conteúdo da lista
 int ope12();
 int ope13();
+int opcao;
 
 const int N = 10;
 PREMIO premios[N] = {
@@ -42,7 +45,6 @@ int final = 2; // índice do último item da lista. Caso final seja -1, a lista 
 int main(void)
 {
     setlocale(LC_ALL, "Portuguese");
-    cout << "Digite a opção desejada: \n";
     cout << " 1- Para Inseir na Posição K+1 \n"
          << " 2- Para Procurar um nó por nome do prêmio e inserir um novo nó anterior ao nó encontrado \n"
          << " 3 - Procurar um nó por quantidade de prêmios disponível e alterar o conteúdo do nó encontrado \n"
@@ -56,6 +58,36 @@ int main(void)
          << " 11 - Imprimir o conteúdo da lista \n"
          << " 12 - Classificar a lista por ordem de quantidade de prêmios disponíveis \n"
          << " 13 - Imprimir a lista os nós que estão armazenados nos índices impares.\n";
+         cout << "Digite a opção desejada: \n";
+         cin >> opcao;
+    switch(opcao){
+    case 1:
+        break;
+    case 2:
+        break;
+    case 3:
+        break;
+    case 4:
+        break;
+    case 5:
+        break;
+    case 6:
+        break;
+    case 7:
+        break;
+    case 8:
+        break;
+    case 9:
+        break;
+    case 10:
+        break;
+    case 11:
+        break;
+    case 12:
+        break;
+    case 13:
+        break;
+    }
     //ope11();
     addFim();
     //cout << endl << premios[final].nome << endl;
@@ -110,7 +142,7 @@ int ope1() // Inserir na posição K+1
             }
             else
             {
-                cout << "Inserção não confirmada!/n"
+                cout << "Inserção não confirmada!/n";
             }
         }
         else
@@ -118,7 +150,7 @@ int ope1() // Inserir na posição K+1
             cout << "k+1 não pertence à lista!\n";
             return 1;
         }
-    } 
+    }
     else
     {
         cout << "A listagem máxima de prêmios já foi atingida\n";
@@ -141,7 +173,7 @@ int ope11() // Imprimir o conteúdo da lista
             cout << "STATUS: ";
             if (premios[i].vendido) cout << "VENDIDO" << endl;
             else cout << "À VENDA" << endl;
-            
+
         }
     }
     else cout << "Lista vazia!\n";
