@@ -3,13 +3,13 @@
 
 #include <iostream>
 #include <string>
-
+#include <clocale>
 
 using namespace std;
 
 typedef struct PREMIO {
     string nome;
-    float preco;
+    double preco;
     int id;
     bool vendido;
 } PREMIO;
@@ -34,11 +34,12 @@ const int N = 10;
 PREMIO premios[N] = {
                         {"Celular", 1250.99, 1, false},
                         {"Mouse Gamer", 250.70, 2, false},
-                        {"Pacote de M&Ms", 250.70, 2, true}
+                        {"Pacote de M&Ms", 250.70, 3, true}
                     };
 
 int main(void)
 {
+    setlocale(LC_ALL, "Portuguese");
     cout << "Digite a opção desejada: ";
     cout << "\n 1- Para Inseir na Posição K+1 \n 2- Para Procurar um nó por nome do prêmio e inserir um novo nó anterior ao nó encontrado \n 3 - Procurar um nó por quantidade de prêmios disponível e alterar o conteúdo do nó encontrado \n 4 - Consultar o nó anterior ao da posição k + 1 \n 5 - Remover na posição k \n 6 - Procurar um nó e remover o novo nó na posição anterior ao nó encontrado \n 7 - Verificar se um prêmio pertence à lista e imprimir o conteúdo do nó anterior \n 8 - Imprimir a quantidade de nós com preço maior que R$50,00 \n 9 - Procurar um nó e alterar o conteúdo do nó posterior encontrado \n 10 - Imprimir relatório dos prêmios vendidos e calcular no final o montante arrecadado \n 11 - Imprimir o conteúdo da lista \n 12 - Classificar a lista por ordem de quantidade de prêmios disponíveis \n 13 - Imprimir a lista os nós que estão armazenados nos índices impares.";
 
