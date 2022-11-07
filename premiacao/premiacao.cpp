@@ -2,6 +2,7 @@
 //
 
 #include <iostream>
+#include <iomanip>
 #include <string>
 #include <clocale>
 
@@ -15,7 +16,7 @@ typedef struct PREMIO {
 } PREMIO;
 
 int addFim();
-int ope1();
+int ope1(); // Inserir na posição K+1
 int ope2();
 int ope3();
 int ope4();
@@ -55,8 +56,8 @@ int main(void)
          << " 11 - Imprimir o conteúdo da lista \n"
          << " 12 - Classificar a lista por ordem de quantidade de prêmios disponíveis \n"
          << " 13 - Imprimir a lista os nós que estão armazenados nos índices impares.\n";
-    ope11();
-    //addFim();
+    //ope11();
+    addFim();
     //cout << endl << premios[final].nome << endl;
 }
 
@@ -79,8 +80,56 @@ int addFim()
     return 0;
 }
 
+int ope1() // Inserir na posição K+1
+{
+    int k, aux;
+    char conf = 'N';
+    PREMIO val; // variável temporária
+    cout << "Você escolheu a operação 1: Inserir na posição K+1.\n";
+    if (final < N - 1) //verifica se há espaço na lista
+    {
+        cout << "Insira K";
+        cin >> k; // como o intuito é inserir na posição k+1, não é necessário fazer nenhuma operação para ajustar à lista, indexada em 0
+        if (k >= 0 and k <= final)
+        {
+            cout << "\nNome: ";
+            getline(cin, val.nome);
+            cout << "\nPreço: ";
+            cin >> val.preco;
+            cout << "\nID: ";
+            cin >> val.id;
+            val.vendido = false;
+
+            cout << "Você confirma a inserção dos dados? (S/N)";
+            cin >> conf;
+            conf = toupper(conf);
+            if (conf == 'S')
+            {
+                final++;
+
+            }
+            else
+            {
+                cout << "Inserção não confirmada!/n"
+            }
+        }
+        else
+        {
+            cout << "k+1 não pertence à lista!\n";
+            return 1;
+        }
+    } 
+    else
+    {
+        cout << "A listagem máxima de prêmios já foi atingida\n";
+        return 1;
+    }
+    return 0;
+}
+
 int ope11() // Imprimir o conteúdo da lista
 {
+    cout << "Você escolheu a operação 11: Imprimir o conteúdo da lista.\n";
     if (final > -1)
     {
         for (int i = 0; i <= final; i++)
