@@ -252,78 +252,67 @@ int ope2() // Procurar nó por nome e inserir novo nó na posição anterior ao 
 
 int ope3() // Procurar um nó por quantidade de prêmios disponível e alterar o conteúdo do nó encontrado
 {
-    // Procura um nó cujo índice seja equivalente à quantidade disponível de prêmio
-    string nome;
+
+    int quant;
     int indice;
     bool encontrado = false;
     char conf = 'N';
     PREMIO val; // variável temporária
-    cout << "Você escolheu a operação 2: Procurar nó por nome e inserir novo nó na posição anterior ao nó encontrado.\n";
-    if (final < N - 1) //verifica se há espaço na lista
+    cout << "Você escolheu a operação 3: Procurar um nó por quantidade de prêmios disponível e alterar o conteúdo do nó encontrado.\n";
+    
+    if (final > -1)
     {
-        if (final > -1)
+        cout << "Insira a quantidade de premios disponíveis que você deseja procurar: ";
+        cin >> quant;
+        for (int i = 0; i <= final; i++)
         {
-            cout << "Insira o nome do Nó que você deseja procurar: ";
-            getline(cin >> ws, nome);
-            for (int i = 0; i <= final; i++)
+            if (premios[i].quantidade == quant)
             {
-                if (premios[i].nome.compare(nome) == 0)
-                {
-                    encontrado = true;
-                    indice = i;
-                    i = final + 1;
-                }
+                encontrado = true;
+                indice = i;
+                i = final + 1;
             }
-            if (encontrado)
-            {
-                cout << "\nNó encontrado ! Por favor insira as informações para o novo nó:\n";
-                cout << "\nNome: ";
-                getline(cin >> ws, val.nome);
-                cout << "\nPreço: ";
-                cin >> val.preco;
-                cout << "\nID: ";
-                cin >> val.id;
-                cout << "\nQuantas unidades deste prêmio estão disponíveis?: ";
-                cin >> val.quantidade;
+        }
+        if (encontrado)
+        {
+            cout << "\nNó encontrado ! Por favor insira as novas informações para alterar o nó:\n";
+            cout << "\nNome: ";
+            getline(cin >> ws, val.nome);
+            cout << "\nPreço: ";
+            cin >> val.preco;
+            cout << "\nID: ";
+            cin >> val.id;
+            cout << "\nQuantas unidades deste prêmio estão disponíveis?: ";
+            cin >> val.quantidade;
 
-                cout << "Você confirma a inserção dos dados? (S/N)";
-                cin >> conf;
-                conf = toupper(conf);
-                if (conf == 'S')
-                {
-                    final++;
-                    for (int aux = final; aux > indice; aux--)
-                    {
-                        premios[aux] = premios[aux - 1];
-                    }
-                    premios[indice] = val;
-                    cout << "Inserção Concluída com sucesso!\n\n";
-                    return 0;
-                }
-                else
-                {
-                    cout << "Inserção não confirmada!\n\n";
-                    return 1;
-                }
+            cout << "Você confirma a alteração dos dados? (S/N)";
+            cin >> conf;
+            conf = toupper(conf);
+            if (conf == 'S')
+            {
+                premios[indice] = val;
+                cout << "Alteração Concluída com sucesso!\n\n";
+                return 0;
             }
             else
             {
-                cout << nome << " não pertence à lista!\n\n";
-
+                cout << "Alteração não confirmada!\n\n";
                 return 1;
             }
         }
         else
         {
-            cout << "Lista vazia!\n\n";
+            cout << "Não há nenhum nó com " << quant << " prêmios disponíveis na lista!\n\n";
+
             return 1;
         }
     }
     else
     {
-        cout << "A listagem máxima de prêmios já foi atingida\n\n";
+        cout << "Lista vazia!\n\n";
         return 1;
     }
+    
     return 0;
 }
 
