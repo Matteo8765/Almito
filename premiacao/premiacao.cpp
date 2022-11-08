@@ -89,7 +89,7 @@ int menuInicio()
         ope4();
         break;
     case 5:
-        //ope5();
+        ope5();
         break;
     case 6:
         //ope6();
@@ -366,6 +366,67 @@ int ope4() // Consultar nó anterior à posição K+1
     return 0;
 }
 
+int ope5() // Remover na posição k
+{
+    cout << "Você escolheu a operação 5: Remover na posição k.\n";
+
+    int k;
+    char conf = 'N';
+
+    cout << "Insira K: ";
+    cin >> k;
+    k--; //é necessario reduzir k em 1, já que a posição de um nó é igual ao seu índex somado a um.
+    if (final > -1)
+    {
+        if (k >= 0 and k <= final)
+        {
+            cout << "\n\n"
+                << "ÍNDICE: " << k << endl
+                << "POSIÇÃO: " << k + 1 << endl
+                << "ID: " << premios[k].id << endl
+                << "NOME: " << premios[k].nome << endl
+                << "PREÇO: " << premios[k].preco << endl
+                << "QUANTIDADE DISPONÍVEL: ";
+            if (premios[k].quantidade > 0)
+            {
+                cout << premios[k].quantidade << endl;
+            }
+            else cout << "ESGOTADO" << endl;
+            cout << "QUANTIDADE DE PREMIOS VENDIDOS: " << premios[k].vendidos << endl;
+
+            cout << "\n\nVocê confirma a Remoção deste nó? (S/N)";
+            cin >> conf;
+            conf = toupper(conf);
+            if (conf == 'S')
+            {
+                for (int i = k; i < final; i++)
+                {
+                    premios[k] = premios[k + 1];
+                }
+                final--;
+                cout << "Remoção Concluída com sucesso!\n\n";
+                return 0;
+            }
+            else
+            {
+                cout << "Remoção não confirmada!\n\n";
+                return 1;
+            }
+        }
+        else
+        {
+            cout << "A posição k não pertence à lista!\n";
+            return 1;
+        }      
+    }
+    else
+    {
+        cout << "Lista vazia!\n\n";
+        return 1;
+    }
+    
+    return 0;
+}
 
 int ope11() // Imprimir o conteúdo da lista
 {
@@ -433,13 +494,3 @@ int ope13() // Imprimir os nós de índice ímpar da lista
     return 0;
 }
 
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started:
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
