@@ -86,25 +86,33 @@ int menuInicio()
         ope3();
         break;
     case 4:
+        ope4();
         break;
     case 5:
+        ope5();
         break;
     case 6:
+        ope6();
         break;
     case 7:
+        ope7();
         break;
     case 8:
+        ope8();
         break;
     case 9:
+        ope9();
         break;
     case 10:
+        ope10();
         break;
     case 11:
         ope11();
         break;
     case 12:
+        ope12();
         break;
-    case 13: 
+    case 13:
         ope13();
         break;
     }
@@ -137,7 +145,7 @@ int ope1() // Inserir na posição K+1
             cout << "\nPreço: ";
             cin >> val.preco;
             cout << "\nID: ";
-            cin >> val.id; 
+            cin >> val.id;
             cout << "\nQuantas unidades deste prêmio estão disponíveis? ";
             cin >> val.quantidade;
             cout << "\nQuantas unidades deste prêmio já foram vendidas? ";
@@ -265,7 +273,7 @@ int ope3() // Procurar um nó por quantidade de prêmios disponível e alterar o
     char conf = 'N';
     PREMIO val; // variável temporária
     cout << "Você escolheu a operação 3: Procurar um nó por quantidade de prêmios disponível e alterar o conteúdo do nó encontrado.\n";
-    
+
     if (final > -1)
     {
         cout << "Insira a quantidade de premios disponíveis que você deseja procurar: ";
@@ -320,7 +328,7 @@ int ope3() // Procurar um nó por quantidade de prêmios disponível e alterar o
         cout << "Lista vazia!\n\n";
         return 1;
     }
-    
+
     return 0;
 }
 
