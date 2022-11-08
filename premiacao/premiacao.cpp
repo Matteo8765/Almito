@@ -32,7 +32,7 @@ int ope9();
 int ope10();
 int ope11(); // Imprimir o conteúdo da lista
 int ope12();
-int ope13();
+int ope13(); // Imprimir os nós de índice ímpar da lista
 int opcao;
 
 const int N = 10;
@@ -101,7 +101,8 @@ int menuInicio()
         break;
     case 12:
         break;
-    case 13:
+    case 13: 
+        ope13();
         break;
     }
     menuInicio(); //Ao terminar de fazer tudo, a função chama a si mesma novamente para que o programa continue ativo
@@ -281,6 +282,35 @@ int ope11() // Imprimir o conteúdo da lista
     else
     {
         cout << "Lista vazia!\n\n";
+        return 1;
+    }
+    return 0;
+}
+
+int ope13() // Imprimir os nós de índice ímpar da lista
+{
+    cout << "Você escolheu a operação 13: Imprimir os nós de índice ímpar da lista.\n";
+    if (final > 0)
+    {
+        for (int i = 0; i <= final; i++)
+        {
+            if (i % 2)
+            {
+                cout << "------------------------------------------------------------------" << endl;
+                cout << i << endl;
+                cout << "ID: " << premios[i].id << endl;
+                cout << "NOME: " << premios[i].nome << endl;
+                cout << "PREÇO: " << premios[i].preco << endl;
+                cout << "STATUS: ";
+                if (premios[i].vendido) cout << "VENDIDO" << endl;
+                else cout << "À VENDA" << endl;
+            }
+        }
+        cout << "------------------------------------------------------------------\n\n\n";
+    }
+    else
+    {
+        cout << "Não há nós de índice ímpar na lista!\n\n";
         return 1;
     }
     return 0;
