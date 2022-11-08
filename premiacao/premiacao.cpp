@@ -13,16 +13,17 @@ typedef struct PREMIO {
     int id;
     string nome;
     double preco;
-    bool vendido;
+    int quantidade;
 } PREMIO;
 
 
-int addFim();
+
 int menuInicio();
 int encerrar();
+
 int ope1(); // Inserir na posição K+1
 int ope2(); // Procurar nó por nome e inserir novo nó na posição anterior ao nó encontrado
-int ope3();
+int ope3(); // Procurar um nó por quantidade de prêmios disponível e alterar o conteúdo do nó encontrado
 int ope4();
 int ope5();
 int ope6();
@@ -37,9 +38,9 @@ int opcao;
 
 const int N = 10;
 PREMIO premios[N] = {
-                        {1, "Celular", 1250.99, false},
-                        {2, "Mouse Gamer", 250.70, false},
-                        {3, "Pacote de M&Ms", 250.70, true}
+                        {1, "Celular", 1250.99, 1},
+                        {2, "Mouse Gamer", 250.70, 3},
+                        {3, "Pacote de M&Ms", 250.70, 23}
                     };
 int final = 2; // índice do último item da lista. Caso final seja -1, a lista é vazia
 
@@ -81,6 +82,7 @@ int menuInicio()
         ope2();
         break;
     case 3:
+        ope3();
         break;
     case 4:
         break;
@@ -115,22 +117,7 @@ int encerrar()
     return 0;
 }
 
-int addFim()
-{
-    if (final < N - 1) //verifica se há espaço na lista
-    {
-        final++;
-        cout << "\nNome: ";
-        getline(cin >> ws, premios[final].nome); // é necessário usar cin >> ws para que o cin ignore espaços em branco, do contrario dá problema
-        cout << "\nPreço: ";
-        cin >> premios[final].preco;
-        cout << "\nID: ";
-        cin >> premios[final].id;
-        premios[final].vendido = false;
-    }
-    else cout << "A listagem máxima de prêmios já foi atingida\n";
-    return 0;
-}
+
 
 int ope1() // Inserir na posição K+1
 {
@@ -150,7 +137,8 @@ int ope1() // Inserir na posição K+1
             cin >> val.preco;
             cout << "\nID: ";
             cin >> val.id; 
-            val.vendido = false; //Pressupõe-se que um prêmio Recém adicionado não foi vendido
+            cout << "\nQuantas unidades deste prêmio estão disponíveis?: ";
+            cin >> val.quantidade; 
 
             cout << "Você confirma a inserção dos dados? (S/N)";
             cin >> conf;
@@ -218,7 +206,85 @@ int ope2() // Procurar nó por nome e inserir novo nó na posição anterior ao 
                 cin >> val.preco;
                 cout << "\nID: ";
                 cin >> val.id;
-                val.vendido = false; //Pressupõe-se que um prêmio Recém adicionado não foi vendido
+                cout << "\nQuantas unidades deste prêmio estão disponíveis?: ";
+                cin >> val.quantidade;
+
+                cout << "Você confirma a inserção dos dados? (S/N)";
+                cin >> conf;
+                conf = toupper(conf);
+                if (conf == 'S')
+                {
+                    final++;
+                    for (int aux = final; aux > indice; aux--)
+                    {
+                        premios[aux] = premios[aux - 1];
+                    }
+                    premios[indice] = val;
+                    cout << "Inserção Concluída com sucesso!\n\n";
+                    return 0;
+                }
+                else
+                {
+                    cout << "Inserção não confirmada!\n\n";
+                    return 1;
+                }
+            }
+            else
+            {
+                cout << nome << " não pertence à lista!\n\n";
+
+                return 1;
+            }
+        }
+        else
+        {
+            cout << "Lista vazia!\n\n";
+            return 1;
+        }
+    }
+    else
+    {
+        cout << "A listagem máxima de prêmios já foi atingida\n\n";
+        return 1;
+    }
+    return 0;
+}
+
+int ope3() // Procurar um nó por quantidade de prêmios disponível e alterar o conteúdo do nó encontrado
+{
+    // Procura um nó cujo índice seja equivalente à quantidade disponível de prêmio
+    string nome;
+    int indice;
+    bool encontrado = false;
+    char conf = 'N';
+    PREMIO val; // variável temporária
+    cout << "Você escolheu a operação 2: Procurar nó por nome e inserir novo nó na posição anterior ao nó encontrado.\n";
+    if (final < N - 1) //verifica se há espaço na lista
+    {
+        if (final > -1)
+        {
+            cout << "Insira o nome do Nó que você deseja procurar: ";
+            getline(cin >> ws, nome);
+            for (int i = 0; i <= final; i++)
+            {
+                if (premios[i].nome.compare(nome) == 0)
+                {
+                    encontrado = true;
+                    indice = i;
+                    i = final + 1;
+                }
+            }
+            if (encontrado)
+            {
+                cout << "\nNó encontrado ! Por favor insira as informações para o novo nó:\n";
+                cout << "\nNome: ";
+                getline(cin >> ws, val.nome);
+                cout << "\nPreço: ";
+                cin >> val.preco;
+                cout << "\nID: ";
+                cin >> val.id;
+                cout << "\nQuantas unidades deste prêmio estão disponíveis?: ";
+                cin >> val.quantidade;
 
                 cout << "Você confirma a inserção dos dados? (S/N)";
                 cin >> conf;
@@ -272,9 +338,12 @@ int ope11() // Imprimir o conteúdo da lista
             cout << "ID: " << premios[i].id << endl;
             cout << "NOME: " << premios[i].nome << endl;
             cout << "PREÇO: " << premios[i].preco << endl;
-            cout << "STATUS: ";
-            if (premios[i].vendido) cout << "VENDIDO" << endl;
-            else cout << "À VENDA" << endl;
+            cout << "QUANTIDADE DISPONÍVEL: ";
+            if (premios[i].quantidade > 0)
+            {
+                cout << premios[i].quantidade << endl;
+            }
+            else cout << "ESGOTADO" << endl;
 
         }
         cout << "------------------------------------------------------------------\n\n\n";
@@ -301,9 +370,12 @@ int ope13() // Imprimir os nós de índice ímpar da lista
                 cout << "ID: " << premios[i].id << endl;
                 cout << "NOME: " << premios[i].nome << endl;
                 cout << "PREÇO: " << premios[i].preco << endl;
-                cout << "STATUS: ";
-                if (premios[i].vendido) cout << "VENDIDO" << endl;
-                else cout << "À VENDA" << endl;
+                cout << "QUANTIDADE DISPONÍVEL: ";
+                if (premios[i].quantidade > 0)
+                {
+                    cout << premios[i].quantidade << endl;
+                }
+                else cout << "ESGOTADO" << endl;
             }
         }
         cout << "------------------------------------------------------------------\n\n\n";
