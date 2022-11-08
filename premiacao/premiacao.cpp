@@ -103,7 +103,7 @@ int menuInicio()
     case 13:
         break;
     }
-    menuInicio();
+    menuInicio(); //Ao terminar de fazer tudo, a função chama a si mesma novamente para que o programa continue ativo
     return 0;
 }
 
@@ -119,7 +119,7 @@ int addFim()
     {
         final++;
         cout << "\nNome: ";
-        getline(cin >> ws, premios[final].nome);
+        getline(cin >> ws, premios[final].nome); // é necessário usar cin >> ws para que o cin ignore espaços em branco, do contrario dá problema
         cout << "\nPreço: ";
         cin >> premios[final].preco;
         cout << "\nID: ";
@@ -143,7 +143,6 @@ int ope1() // Inserir na posição K+1
         if (k >= 0 and k <= final)
         {
             cout << "\nNome: ";
-            
             getline(cin >> ws, val.nome);
             cout << "\nPreço: ";
             cin >> val.preco;
@@ -202,7 +201,11 @@ int ope11() // Imprimir o conteúdo da lista
         }
         cout << "------------------------------------------------------------------\n";
     }
-    else cout << "Lista vazia!\n";
+    else
+    {
+        cout << "Lista vazia!\n";
+        return 1;
+    }
     return 0;
 }
 
