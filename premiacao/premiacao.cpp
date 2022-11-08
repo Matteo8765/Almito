@@ -18,6 +18,8 @@ typedef struct PREMIO {
 
 
 int addFim();
+int menuInicio();
+int encerrar();
 int ope1(); // Inserir na posição K+1
 int ope2();
 int ope3();
@@ -45,23 +47,35 @@ int final = 2; // índice do último item da lista. Caso final seja -1, a lista 
 int main(void)
 {
     setlocale(LC_ALL, "Portuguese");
-    cout << " 1- Para Inseir na Posição K+1 \n"
-         << " 2- Para Procurar um nó por nome do prêmio e inserir um novo nó anterior ao nó encontrado \n"
-         << " 3 - Procurar um nó por quantidade de prêmios disponível e alterar o conteúdo do nó encontrado \n"
-         << " 4 - Consultar o nó anterior ao da posição k + 1 \n"
-         << " 5 - Remover na posição k \n"
-         << " 6 - Procurar um nó e remover o novo nó na posição anterior ao nó encontrado \n"
-         << " 7 - Verificar se um prêmio pertence à lista e imprimir o conteúdo do nó anterior \n"
-         << " 8 - Imprimir a quantidade de nós com preço maior que R$50,00 \n"
-         << " 9 - Procurar um nó e alterar o conteúdo do nó posterior encontrado \n"
-         << " 10 - Imprimir relatório dos prêmios vendidos e calcular no final o montante arrecadado \n"
-         << " 11 - Imprimir o conteúdo da lista \n"
-         << " 12 - Classificar a lista por ordem de quantidade de prêmios disponíveis \n"
-         << " 13 - Imprimir a lista os nós que estão armazenados nos índices impares.\n";
-         cout << "Digite a opção desejada: \n";
-         cin >> opcao;
-    switch(opcao){
+    menuInicio();
+}
+
+int menuInicio()
+{
+
+    cout    << " 0 - Para encerrar o Programa\n"
+            << " 1 - Para Inserir na Posição K+1 \n"
+            << " 2 - Para Procurar um nó por nome do prêmio e inserir um novo nó anterior ao nó encontrado \n"
+            << " 3 - Procurar um nó por quantidade de prêmios disponível e alterar o conteúdo do nó encontrado \n"
+            << " 4 - Consultar o nó anterior ao da posição k + 1 \n"
+            << " 5 - Remover na posição k \n"
+            << " 6 - Procurar um nó e remover o novo nó na posição anterior ao nó encontrado \n"
+            << " 7 - Verificar se um prêmio pertence à lista e imprimir o conteúdo do nó anterior \n"
+            << " 8 - Imprimir a quantidade de nós com preço maior que R$50,00 \n"
+            << " 9 - Procurar um nó e alterar o conteúdo do nó posterior encontrado \n"
+            << " 10 - Imprimir relatório dos prêmios vendidos e calcular no final o montante arrecadado \n"
+            << " 11 - Imprimir o conteúdo da lista \n"
+            << " 12 - Classificar a lista por ordem de quantidade de prêmios disponíveis \n"
+            << " 13 - Imprimir a lista os nós que estão armazenados nos índices impares.\n";
+    cout << "Digite a opção desejada: \n";
+    cin >> opcao;
+    switch (opcao) {
+    case 0:
+        encerrar();
+        return 0;
+        break;
     case 1:
+        ope1();
         break;
     case 2:
         break;
@@ -82,17 +96,22 @@ int main(void)
     case 10:
         break;
     case 11:
+        ope11();
         break;
     case 12:
         break;
     case 13:
         break;
     }
-    //ope11();
-    addFim();
-    //cout << endl << premios[final].nome << endl;
+    menuInicio();
+    return 0;
 }
 
+int encerrar()
+{
+    cout << "Você decidiu encerrar o Programa. Até Breve! \n\n";
+    return 0;
+}
 
 int addFim()
 {
