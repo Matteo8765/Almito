@@ -25,7 +25,7 @@ int encerrar();
 int ope1(); // Inserir na posição K+1
 int ope2(); // Procurar nó por nome e inserir novo nó na posição anterior ao nó encontrado
 int ope3(); // Procurar um nó por quantidade de prêmios disponível e alterar o conteúdo do nó encontrado
-int ope4();
+int ope4(); // Consultar nó anterior à posição K+1
 int ope5();
 int ope6();
 int ope7();
@@ -89,28 +89,28 @@ int menuInicio()
         ope4();
         break;
     case 5:
-        ope5();
+        //ope5();
         break;
     case 6:
-        ope6();
+        //ope6();
         break;
     case 7:
-        ope7();
+        //ope7();
         break;
     case 8:
-        ope8();
+        //ope8();
         break;
     case 9:
-        ope9();
+        //ope9();
         break;
     case 10:
-        ope10();
+        //ope10();
         break;
     case 11:
         ope11();
         break;
     case 12:
-        ope12();
+        //ope12();
         break;
     case 13:
         ope13();
@@ -331,6 +331,41 @@ int ope3() // Procurar um nó por quantidade de prêmios disponível e alterar o
 
     return 0;
 }
+
+int ope4() // Consultar nó anterior à posição K+1
+{
+    int k;
+    char conf = 'N';
+    cout << "Você escolheu a operação 4: Consultar o nó anterior à posição K+1.\n"; //É o mesmo que consultar o nó na posição K
+    
+    cout << "Insira K: ";
+    cin >> k;
+    k--; //é necessario reduzir k em 1, já que a posição de um nó é igual ao seu índex somado a um.
+    if (k >= 0 and k <= final)
+    {
+        cout << "\n\n"
+             << "ÍNDICE: " << k << endl
+             << "POSIÇÃO: " << k + 1 << endl
+             << "ID: " << premios[k].id << endl
+             << "NOME: " << premios[k].nome << endl
+             << "PREÇO: " << premios[k].preco << endl
+             << "QUANTIDADE DISPONÍVEL: ";
+        if (premios[k].quantidade > 0)
+        {
+            cout << premios[k].quantidade << endl;
+        }
+        else cout << "ESGOTADO" << endl;
+        cout << "QUANTIDADE DE PREMIOS VENDIDOS: " << premios[k].vendidos << endl;
+    }
+    else
+    {
+        cout << "A posição k não pertence à lista!\n";
+        return 1;
+    }
+    
+    return 0;
+}
+
 
 int ope11() // Imprimir o conteúdo da lista
 {
