@@ -21,7 +21,7 @@ int addFim();
 int menuInicio();
 int encerrar();
 int ope1(); // Inserir na posição K+1
-int ope2();
+int ope2(); // Procurar nó por nome e inserir novo nó na posição anterior ao nó encontrado
 int ope3();
 int ope4();
 int ope5();
@@ -78,6 +78,7 @@ int menuInicio()
         ope1();
         break;
     case 2:
+        ope2();
         break;
     case 3:
         break;
@@ -147,8 +148,8 @@ int ope1() // Inserir na posição K+1
             cout << "\nPreço: ";
             cin >> val.preco;
             cout << "\nID: ";
-            cin >> val.id;
-            val.vendido = false;
+            cin >> val.id; 
+            val.vendido = false; //Pressupõe-se que um prêmio Recém adicionado não foi vendido
 
             cout << "Você confirma a inserção dos dados? (S/N)";
             cin >> conf;
@@ -161,11 +162,12 @@ int ope1() // Inserir na posição K+1
                     premios[aux] = premios[aux - 1];
                 }
                 premios[k] = val;
+                cout << "Inserção Concluída com sucesso!\n\n";
                 return 0;
             }
             else
             {
-                cout << "Inserção não confirmada!/n";
+                cout << "Inserção não confirmada!\n\n";
                 return 1;
             }
         }
@@ -177,7 +179,82 @@ int ope1() // Inserir na posição K+1
     }
     else
     {
-        cout << "A listagem máxima de prêmios já foi atingida\n";
+        cout << "A listagem máxima de prêmios já foi atingida\n\n";
+        return 1;
+    }
+    return 0;
+}
+
+int ope2() // Procurar nó por nome e inserir novo nó na posição anterior ao nó encontrado
+{
+    string nome;
+    int indice;
+    bool encontrado = false;
+    char conf = 'N';
+    PREMIO val; // variável temporária
+    cout << "Você escolheu a operação 2: Procurar nó por nome e inserir novo nó na posição anterior ao nó encontrado.\n";
+    if (final < N - 1) //verifica se há espaço na lista
+    {
+        if (final > -1)
+        {
+            cout << "Insira o nome do Nó que você deseja procurar: ";
+            getline(cin >> ws, nome);
+            for (int i = 0; i <= final; i++)
+            {
+                if (premios[i].nome.compare(nome) == 0)
+                {
+                    encontrado = true;
+                    indice = i;
+                    i = final + 1;
+                }
+            }
+            if (encontrado)
+            {
+                cout << "\nNó encontrado ! Por favor insira as informações para o novo nó:\n";
+                cout << "\nNome: ";
+                getline(cin >> ws, val.nome);
+                cout << "\nPreço: ";
+                cin >> val.preco;
+                cout << "\nID: ";
+                cin >> val.id;
+                val.vendido = false; //Pressupõe-se que um prêmio Recém adicionado não foi vendido
+
+                cout << "Você confirma a inserção dos dados? (S/N)";
+                cin >> conf;
+                conf = toupper(conf);
+                if (conf == 'S')
+                {
+                    final++;
+                    for (int aux = final; aux > indice; aux--)
+                    {
+                        premios[aux] = premios[aux - 1];
+                    }
+                    premios[indice] = val;
+                    cout << "Inserção Concluída com sucesso!\n\n";
+                    return 0;
+                }
+                else
+                {
+                    cout << "Inserção não confirmada!\n\n";
+                    return 1;
+                }
+            }
+            else
+            {
+                cout << nome << " não pertence à lista!\n\n";
+
+                return 1;
+            }
+        }
+        else
+        {
+            cout << "Lista vazia!\n\n";
+            return 1;
+        }
+    }
+    else
+    {
+        cout << "A listagem máxima de prêmios já foi atingida\n\n";
         return 1;
     }
     return 0;
@@ -199,11 +276,11 @@ int ope11() // Imprimir o conteúdo da lista
             else cout << "À VENDA" << endl;
 
         }
-        cout << "------------------------------------------------------------------\n";
+        cout << "------------------------------------------------------------------\n\n\n";
     }
     else
     {
-        cout << "Lista vazia!\n";
+        cout << "Lista vazia!\n\n";
         return 1;
     }
     return 0;
