@@ -14,6 +14,7 @@ typedef struct PREMIO {
     string nome;
     double preco;
     int quantidade;
+    int vendidos;
 } PREMIO;
 
 
@@ -38,9 +39,9 @@ int opcao;
 
 const int N = 10;
 PREMIO premios[N] = {
-                        {1, "Celular", 1250.99, 1},
-                        {2, "Mouse Gamer", 250.70, 3},
-                        {3, "Pacote de M&Ms", 250.70, 23}
+                        {1, "Celular", 1250.99, 2, 0},
+                        {2, "Mouse Gamer", 250.70, 3, 2},
+                        {3, "Pacote de M&Ms", 250.70, 23, 40}
                     };
 int final = 2; // índice do último item da lista. Caso final seja -1, a lista é vazia
 
@@ -137,8 +138,10 @@ int ope1() // Inserir na posição K+1
             cin >> val.preco;
             cout << "\nID: ";
             cin >> val.id; 
-            cout << "\nQuantas unidades deste prêmio estão disponíveis?: ";
-            cin >> val.quantidade; 
+            cout << "\nQuantas unidades deste prêmio estão disponíveis? ";
+            cin >> val.quantidade;
+            cout << "\nQuantas unidades deste prêmio já foram vendidas? ";
+            cin >> val.vendidos;
 
             cout << "Você confirma a inserção dos dados? (S/N)";
             cin >> conf;
@@ -206,8 +209,11 @@ int ope2() // Procurar nó por nome e inserir novo nó na posição anterior ao 
                 cin >> val.preco;
                 cout << "\nID: ";
                 cin >> val.id;
-                cout << "\nQuantas unidades deste prêmio estão disponíveis?: ";
+                cout << "\nQuantas unidades deste prêmio estão disponíveis? ";
                 cin >> val.quantidade;
+                cout << "\nQuantas unidades deste prêmio já foram vendidas? ";
+                cin >> val.vendidos;
+
 
                 cout << "Você confirma a inserção dos dados? (S/N)";
                 cin >> conf;
@@ -282,8 +288,10 @@ int ope3() // Procurar um nó por quantidade de prêmios disponível e alterar o
             cin >> val.preco;
             cout << "\nID: ";
             cin >> val.id;
-            cout << "\nQuantas unidades deste prêmio estão disponíveis?: ";
+            cout << "\nQuantas unidades deste prêmio estão disponíveis? ";
             cin >> val.quantidade;
+            cout << "\nQuantas unidades deste prêmio já foram vendidas? ";
+            cin >> val.vendidos;
 
             cout << "Você confirma a alteração dos dados? (S/N)";
             cin >> conf;
@@ -324,6 +332,8 @@ int ope11() // Imprimir o conteúdo da lista
         for (int i = 0; i <= final; i++)
         {
             cout << "------------------------------------------------------------------" << endl;
+            cout << "ÍNDICE: " << i << endl;
+            cout << "POSIÇÃO: " << i + 1 << endl;
             cout << "ID: " << premios[i].id << endl;
             cout << "NOME: " << premios[i].nome << endl;
             cout << "PREÇO: " << premios[i].preco << endl;
@@ -333,6 +343,7 @@ int ope11() // Imprimir o conteúdo da lista
                 cout << premios[i].quantidade << endl;
             }
             else cout << "ESGOTADO" << endl;
+            cout << "QUANTIDADE DE PREMIOS VENDIDOS: " << premios[i].vendidos << endl;
 
         }
         cout << "------------------------------------------------------------------\n\n\n";
@@ -355,7 +366,8 @@ int ope13() // Imprimir os nós de índice ímpar da lista
             if (i % 2)
             {
                 cout << "------------------------------------------------------------------" << endl;
-                cout << i << endl;
+                cout << "ÍNDICE: " << i << endl;
+                cout << "POSIÇÃO: " << i+1 << endl;
                 cout << "ID: " << premios[i].id << endl;
                 cout << "NOME: " << premios[i].nome << endl;
                 cout << "PREÇO: " << premios[i].preco << endl;
@@ -365,6 +377,7 @@ int ope13() // Imprimir os nós de índice ímpar da lista
                     cout << premios[i].quantidade << endl;
                 }
                 else cout << "ESGOTADO" << endl;
+                cout << "QUANTIDADE DE PREMIOS VENDIDOS: " << premios[i].vendidos << endl;
             }
         }
         cout << "------------------------------------------------------------------\n\n\n";
