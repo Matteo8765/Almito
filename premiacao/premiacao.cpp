@@ -205,7 +205,7 @@ int ope2() // Procurar nó por nome e inserir novo nó na posição anterior ao 
                 {
                     encontrado = true;
                     indice = i;
-                    i = final + 1;
+                    break
                 }
             }
             if (encontrado)
@@ -284,7 +284,7 @@ int ope3() // Procurar um nó por quantidade de prêmios disponível e alterar o
             {
                 encontrado = true;
                 indice = i;
-                i = final + 1;
+                break
             }
         }
         if (encontrado)
