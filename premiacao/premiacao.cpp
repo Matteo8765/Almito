@@ -6,6 +6,7 @@
 #include <string>
 #include <clocale>
 
+
 using namespace std;
 
 typedef struct PREMIO {
@@ -56,8 +57,10 @@ int main(void)
          << " 11 - Imprimir o conteúdo da lista \n"
          << " 12 - Classificar a lista por ordem de quantidade de prêmios disponíveis \n"
          << " 13 - Imprimir a lista os nós que estão armazenados nos índices impares.\n";
-    //ope11();
-    addFim();
+    ope11();
+    ope1();
+    ope11();
+    
     //cout << endl << premios[final].nome << endl;
 }
 
@@ -68,8 +71,7 @@ int addFim()
     {
         final++;
         cout << "\nNome: ";
-
-        getline(cin, premios[final].nome);
+        getline(cin >> ws, premios[final].nome);
         cout << "\nPreço: ";
         cin >> premios[final].preco;
         cout << "\nID: ";
@@ -82,18 +84,19 @@ int addFim()
 
 int ope1() // Inserir na posição K+1
 {
-    int k, aux;
+    int k;
     char conf = 'N';
     PREMIO val; // variável temporária
     cout << "Você escolheu a operação 1: Inserir na posição K+1.\n";
     if (final < N - 1) //verifica se há espaço na lista
     {
-        cout << "Insira K";
+        cout << "Insira K: ";
         cin >> k; // como o intuito é inserir na posição k+1, não é necessário fazer nenhuma operação para ajustar à lista, indexada em 0
         if (k >= 0 and k <= final)
         {
             cout << "\nNome: ";
-            getline(cin, val.nome);
+            
+            getline(cin >> ws, val.nome);
             cout << "\nPreço: ";
             cin >> val.preco;
             cout << "\nID: ";
@@ -106,11 +109,17 @@ int ope1() // Inserir na posição K+1
             if (conf == 'S')
             {
                 final++;
-
+                for (int aux = final; aux > k; aux--)
+                {
+                    premios[aux] = premios[aux - 1];
+                }
+                premios[k] = val;
+                return 0;
             }
             else
             {
-                cout << "Inserção não confirmada!/n"
+                cout << "Inserção não confirmada!/n";
+                return 1;
             }
         }
         else
@@ -143,6 +152,7 @@ int ope11() // Imprimir o conteúdo da lista
             else cout << "À VENDA" << endl;
             
         }
+        cout << "------------------------------------------------------------------\n";
     }
     else cout << "Lista vazia!\n";
     return 0;
