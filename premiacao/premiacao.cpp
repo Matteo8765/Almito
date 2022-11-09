@@ -19,7 +19,7 @@ typedef struct PREMIO {
 
 
 
-int menuInicio();
+int menuInicio(bool firstcall = false);
 int encerrar();
 
 int ope1(); // Inserir na posição K+1
@@ -29,7 +29,7 @@ int ope4(); // Consultar nó anterior à posição K+1
 int ope5(); // Remover na posição k
 int ope6(); // Procurar um nó por nome e remover o nó na posição anterior ao nó encontrado
 int ope7(); // Verificar se um prêmio pertence à lista e imprimir o conteúdo do nó anterior
-int ope8();
+int ope8(); // Imprimir a quantidade de nós com preço maior que R$50,00
 int ope9();
 int ope10();
 int ope11(); // Imprimir o conteúdo da lista
@@ -42,22 +42,26 @@ const int N = 10;
 PREMIO premios[N] = {
                         {1, "Celular", 1250.99, 2, 0},
                         {2, "Mouse Gamer", 250.70, 3, 2},
-                        {3, "Pacote de M&Ms", 250.70, 23, 40}
+                        {3, "Pacote de M&Ms", 3, 23, 40},
                         {4, "Polystation 19", 10000, 10, 512}
                     };
-int final = 2; // índice do último item da lista. Caso final seja -1, a lista é vazia
+int final = 3; // índice do último item da lista. Caso final seja -1, a lista é vazia
 
 
 int main(void)
 {
     setlocale(LC_ALL, "Portuguese");
-    menuInicio();
+    cout << "Bem vindo ao Programa de Gerenciamento de Prêmios!\n";
+    menuInicio(true);
 }
 
-int menuInicio()
+int menuInicio(bool firstcall) // firstcall é uma variavel para saber se a função está sendo chamada pela primeira vez
 {
 
-    cout    << " 0 - Para encerrar o Programa\n"
+    if (!firstcall) cout << "\n\n------------------------------------------------------------------\n";
+
+    cout    << "Por favor digite: \n"
+            << " 0 - Para encerrar o Programa\n"
             << " 1 - Para Inserir na Posição K+1 \n"
             << " 2 - Para Procurar um nó por nome do prêmio e inserir um novo nó anterior ao nó encontrado \n"
             << " 3 - Procurar um nó por quantidade de prêmios disponível e alterar o conteúdo do nó encontrado \n"
@@ -100,7 +104,7 @@ int menuInicio()
         ope7();
         break;
     case 8:
-        //ope8();
+        ope8();
         break;
     case 9:
         //ope9();
@@ -578,6 +582,27 @@ int ope7() // Verificar se um prêmio pertence à lista e imprimir o conteúdo d
     return 0;
 }
 
+int ope8() // Imprimir a quantidade de nós com preço maior que R$50,00
+{
+    int quant = 0;
+    cout << "Você escolheu a operação 8: Imprimir a quantidade de nós com preço maior que R$50,00.\n";
+    if (final > -1)
+    {
+        for (int i = 0; i <= final; i++)
+        {
+            if (premios[i].preco > 50) quant++;
+        }
+        if (quant)  cout << "Há um total de " << quant << "prêmios cujo preço é maior que R$50\n";
+        else        cout << "Não há nenhum prêmio cujo preço seja maior que R$50\n";
+    }
+    else
+    {
+        cout << "Lista vazia!\n\n";
+        return 1;
+    }
+    return 0;
+}
+
 int ope11() // Imprimir o conteúdo da lista
 {
     cout << "Você escolheu a operação 11: Imprimir o conteúdo da lista.\n";
@@ -600,7 +625,7 @@ int ope11() // Imprimir o conteúdo da lista
             cout << "QUANTIDADE DE PREMIOS VENDIDOS: " << premios[i].vendidos << endl;
 
         }
-        cout << "------------------------------------------------------------------\n\n\n";
+        
     }
     else
     {
@@ -634,7 +659,7 @@ int ope13() // Imprimir os nós de índice ímpar da lista
                 cout << "QUANTIDADE DE PREMIOS VENDIDOS: " << premios[i].vendidos << endl;
             }
         }
-        cout << "------------------------------------------------------------------\n\n\n";
+        
     }
     else
     {
