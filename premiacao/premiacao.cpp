@@ -31,7 +31,7 @@ int ope6(); // Procurar um nó por nome e remover o nó na posição anterior ao
 int ope7(); // Verificar se um prêmio pertence à lista e imprimir o conteúdo do nó anterior
 int ope8(); // Imprimir a quantidade de nós com preço maior que R$50,00
 int ope9(); // Procurar um nó por nome e alterar o conteúdo do nó posterior ao encontrado
-int ope10();
+int ope10(); // Imprimir relatório dos prêmios vendidos e calcular no final o montante arrecadado
 int ope11(); // Imprimir o conteúdo da lista
 int ope12();
 int ope13(); // Imprimir os nós de índice ímpar da lista
@@ -42,8 +42,8 @@ const int N = 10;
 PREMIO premios[N] = {
                         {1, "Celular", 1250.99, 2, 0},
                         {2, "Mouse Gamer", 250.70, 3, 2},
-                        {3, "Pacote de M&Ms", 3, 23, 40},
-                        {4, "Polystation 19", 10000, 10, 512}
+                        {3, "Pacote de M&Ms", 3, 23, 20},
+                        {4, "Polystation 19", 10000, 10, 3}
                     };
 int final = 3; // índice do último item da lista. Caso final seja -1, a lista é vazia
 
@@ -110,7 +110,7 @@ int menuInicio(bool firstcall) // firstcall é uma variavel para saber se a fun�
         ope9();
         break;
     case 10:
-        //ope10();
+        ope10();
         break;
     case 11:
         ope11();
@@ -721,6 +721,44 @@ int ope9() // Procurar um nó por nome e alterar o conteúdo do nó posterior ao
 
             return 1;
         }
+    }
+    else
+    {
+        cout << "Lista vazia!\n\n";
+        return 1;
+    }
+    return 0;
+}
+
+int ope10() // Imprimir relatório dos prêmios vendidos e calcular no final o montante arrecadado
+{
+    cout << "Você escolheu a operação 10: Imprimir relatório dos prêmios vendidos e calcular no final o montante arrecadado.\n";
+    double total = 0;
+    if (final > -1)
+    {
+        for (int i = 0; i <= final; i++)
+        {
+            if (premios[i].vendidos > 0)
+            {
+                cout << "------------------------------------------------------------------" << endl;
+                cout << "ÍNDICE: " << i << endl;
+                cout << "POSIÇÃO: " << i + 1 << endl;
+                cout << "ID: " << premios[i].id << endl;
+                cout << "NOME: " << premios[i].nome << endl;
+                cout << "PREÇO: " << premios[i].preco << endl;
+                cout << "QUANTIDADE DISPONÍVEL: ";
+                if (premios[i].quantidade > 0)
+                {
+                    cout << premios[i].quantidade << endl;
+                }
+                else cout << "ESGOTADO" << endl;
+                cout << "QUANTIDADE DE PREMIOS VENDIDOS: " << premios[i].vendidos << endl;
+                total += (premios[i].vendidos * premios[i].preco);
+            }
+        }
+        if (total) cout << "\n\nFoi arrecadado um total de R$" << total << " !!!\n\n";
+        else cout << "\nNão houve arrecadação. :(";
+
     }
     else
     {
