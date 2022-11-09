@@ -43,6 +43,7 @@ PREMIO premios[N] = {
                         {1, "Celular", 1250.99, 2, 0},
                         {2, "Mouse Gamer", 250.70, 3, 2},
                         {3, "Pacote de M&Ms", 250.70, 23, 40}
+                        {4, "Polystation 19", 10000, 10, 512}
                     };
 int final = 2; // índice do último item da lista. Caso final seja -1, a lista é vazia
 
