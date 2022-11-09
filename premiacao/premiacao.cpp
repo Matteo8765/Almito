@@ -26,8 +26,8 @@ int ope1(); // Inserir na posição K+1
 int ope2(); // Procurar nó por nome e inserir novo nó na posição anterior ao nó encontrado
 int ope3(); // Procurar um nó por quantidade de prêmios disponível e alterar o conteúdo do nó encontrado
 int ope4(); // Consultar nó anterior à posição K+1
-int ope5();
-int ope6();
+int ope5(); // Remover na posição k
+int ope6(); // Procurar um nó por nome e remover o nó na posição anterior ao nó encontrado
 int ope7();
 int ope8();
 int ope9();
@@ -35,6 +35,7 @@ int ope10();
 int ope11(); // Imprimir o conteúdo da lista
 int ope12();
 int ope13(); // Imprimir os nós de índice ímpar da lista
+
 int opcao;
 
 const int N = 10;
@@ -61,7 +62,7 @@ int menuInicio()
             << " 3 - Procurar um nó por quantidade de prêmios disponível e alterar o conteúdo do nó encontrado \n"
             << " 4 - Consultar o nó anterior ao da posição k + 1 \n"
             << " 5 - Remover na posição k \n"
-            << " 6 - Procurar um nó e remover o novo nó na posição anterior ao nó encontrado \n"
+            << " 6 - Procurar um nó por nome e remover o nó na posição anterior ao nó encontrado \n"
             << " 7 - Verificar se um prêmio pertence à lista e imprimir o conteúdo do nó anterior \n"
             << " 8 - Imprimir a quantidade de nós com preço maior que R$50,00 \n"
             << " 9 - Procurar um nó e alterar o conteúdo do nó posterior encontrado \n"
@@ -92,7 +93,7 @@ int menuInicio()
         ope5();
         break;
     case 6:
-        //ope6();
+        ope6();
         break;
     case 7:
         //ope7();
@@ -205,7 +206,7 @@ int ope2() // Procurar nó por nome e inserir novo nó na posição anterior ao 
                 {
                     encontrado = true;
                     indice = i;
-                    break
+                    break;
                 }
             }
             if (encontrado)
@@ -284,7 +285,7 @@ int ope3() // Procurar um nó por quantidade de prêmios disponível e alterar o
             {
                 encontrado = true;
                 indice = i;
-                break
+                break;
             }
         }
         if (encontrado)
@@ -392,7 +393,7 @@ int ope5() // Remover na posição k
                 cout << premios[k].quantidade << endl;
             }
             else cout << "ESGOTADO" << endl;
-            cout << "QUANTIDADE DE PREMIOS VENDIDOS: " << premios[k].vendidos << endl;
+            cout << "QUANTIDADE DE PREMIOS VENDIDOS: " << premios[k].vendidos << "\n\n";
 
             cout << "\n\nVocê confirma a Remoção deste nó? (S/N)";
             cin >> conf;
@@ -401,7 +402,7 @@ int ope5() // Remover na posição k
             {
                 for (int i = k; i < final; i++)
                 {
-                    premios[k] = premios[k + 1];
+                    premios[i] = premios[i + 1];
                 }
                 final--;
                 cout << "Remoção Concluída com sucesso!\n\n";
@@ -418,6 +419,89 @@ int ope5() // Remover na posição k
             cout << "A posição k não pertence à lista!\n";
             return 1;
         }      
+    }
+    else
+    {
+        cout << "Lista vazia!\n\n";
+        return 1;
+    }
+    
+    return 0;
+}
+
+int ope6() // Procurar um nó por nome e remover o nó na posição anterior ao nó encontrado
+{
+    string nome;
+    int indice;
+    bool encontrado = false;
+    char conf = 'N';
+    PREMIO val; // variável temporária
+    cout << "Você escolheu a operação 6: Procurar um nó por nome e remover o nó na posição anterior ao nó encontrado.\n\n";
+    
+    if (final > -1)
+    {
+        cout << "Insira o nome do Nó que você deseja procurar: ";
+        getline(cin >> ws, nome);
+        for (int i = 0; i <= final; i++)
+        {
+            if (premios[i].nome.compare(nome) == 0)
+            {
+                encontrado = true;
+                indice = i;
+                break;
+            }
+        }
+        if (encontrado)
+        {
+            if (indice > 0)
+            {
+                indice--;
+                cout << "\nNó encontrado !\n Seguem as informações do nó anterior ao encontrado:\n\n"
+                    << "ÍNDICE: " << indice << endl
+                    << "POSIÇÃO: " << indice + 1 << endl
+                    << "ID: " << premios[indice].id << endl
+                    << "NOME: " << premios[indice].nome << endl
+                    << "PREÇO: " << premios[indice].preco << endl
+                    << "QUANTIDADE DISPONÍVEL: ";
+                if (premios[indice].quantidade > 0)
+                {
+                    cout << premios[indice].quantidade << endl;
+                }
+                else cout << "ESGOTADO" << endl;
+                cout << "QUANTIDADE DE PREMIOS VENDIDOS: " << premios[indice].vendidos << "\n\n";
+
+                cout << "Você confirma a Remoção deste nó? (S/N)";
+                cin >> conf;
+                conf = toupper(conf);
+                if (conf == 'S')
+                {
+                    for (int i = indice; i < final; i++)
+                    {
+                        premios[i] = premios[i + 1];
+                    }
+                    final--;
+                    cout << "Remoção Concluída com sucesso!\n\n";
+                    return 0;
+                }
+                else
+                {
+                    cout << "Remoção não confirmada!\n\n";
+                    return 1;
+                }
+            }
+            else
+            {
+                cout << "O nó que você procurou é o primeiro da lista, portanto não há nenhum nó antes dele para remover!\n\n";
+                return 1;
+            }
+            
+        }
+        else
+        {
+            cout << nome << " não pertence à lista!\n\n";
+
+            return 1;
+        }
     }
     else
     {
