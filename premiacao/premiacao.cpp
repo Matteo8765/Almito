@@ -28,7 +28,7 @@ int ope3(); // Procurar um nó por quantidade de prêmios disponível e alterar 
 int ope4(); // Consultar nó anterior à posição K+1
 int ope5(); // Remover na posição k
 int ope6(); // Procurar um nó por nome e remover o nó na posição anterior ao nó encontrado
-int ope7();
+int ope7(); // Verificar se um prêmio pertence à lista e imprimir o conteúdo do nó anterior
 int ope8();
 int ope9();
 int ope10();
@@ -96,7 +96,7 @@ int menuInicio()
         ope6();
         break;
     case 7:
-        //ope7();
+        ope7();
         break;
     case 8:
         //ope8();
@@ -509,6 +509,71 @@ int ope6() // Procurar um nó por nome e remover o nó na posição anterior ao 
         return 1;
     }
     
+    return 0;
+}
+
+int ope7() // Verificar se um prêmio pertence à lista e imprimir o conteúdo do nó anterior
+{
+    string nome;
+    int indice;
+    bool encontrado = false;
+    char conf = 'N';
+    PREMIO val; // variável temporária
+    cout << "Você escolheu a operação 7: Verificar se um prêmio pertence à lista e imprimir o conteúdo do nó anterior.\n\n";
+
+    if (final > -1)
+    {
+        cout << "Insira o nome do Nó que você deseja procurar: ";
+        getline(cin >> ws, nome);
+        for (int i = 0; i <= final; i++)
+        {
+            if (premios[i].nome.compare(nome) == 0)
+            {
+                encontrado = true;
+                indice = i;
+                break;
+            }
+        }
+        if (encontrado)
+        {
+            if (indice > 0)
+            {
+                indice--;
+                cout << "\nNó encontrado !\n Seguem as informações do nó anterior ao encontrado:\n\n"
+                    << "ÍNDICE: " << indice << endl
+                    << "POSIÇÃO: " << indice + 1 << endl
+                    << "ID: " << premios[indice].id << endl
+                    << "NOME: " << premios[indice].nome << endl
+                    << "PREÇO: " << premios[indice].preco << endl
+                    << "QUANTIDADE DISPONÍVEL: ";
+                if (premios[indice].quantidade > 0)
+                {
+                    cout << premios[indice].quantidade << endl;
+                }
+                else cout << "ESGOTADO" << endl;
+                cout << "QUANTIDADE DE PREMIOS VENDIDOS: " << premios[indice].vendidos << "\n\n";
+
+            }
+            else
+            {
+                cout << "O nó que você procurou é o primeiro da lista, portanto não há nenhum nó antes dele para imprimir!\n\n";
+                return 1;
+            }
+
+        }
+        else
+        {
+            cout << nome << " não pertence à lista!\n\n";
+
+            return 1;
+        }
+    }
+    else
+    {
+        cout << "Lista vazia!\n\n";
+        return 1;
+    }
+
     return 0;
 }
 
