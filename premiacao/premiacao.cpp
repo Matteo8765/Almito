@@ -23,7 +23,7 @@ typedef struct PREMIO {
 
 int menuInicio(bool firstcall = false);
 int encerrar();
-int classificar(PREMIO arr[]);
+int classificarQuant(PREMIO arr[]);
 int imprimirLista(PREMIO arr[]);
 int imprimirNo(PREMIO arr[], int i);
 PREMIO lerNo(void);
@@ -671,7 +671,7 @@ int ope12() // Classificar a lista por ordem de quantidade de prêmios disponív
             exemplo[i] = premios[i];
         }
 
-        classificar(exemplo);
+        classificarQuant(exemplo);
         imprimirLista(exemplo);
 
         
@@ -679,7 +679,7 @@ int ope12() // Classificar a lista por ordem de quantidade de prêmios disponív
         
         if (confirmar("Você confirma a Classificação deste nó ? (S/N)"))
         {
-            classificar(premios);
+            classificarQuant(premios);
             cout << "Classificação Concluída com sucesso!\n\n";
             return 0;
         }
@@ -721,7 +721,7 @@ int ope13() // Imprimir os nós de índice ímpar da lista
     return 0;
 }
 
-int classificar(PREMIO arr[])
+int classificarQuant(PREMIO arr[])
 {
     PREMIO aux;
     for (int i = 0; i <= final; i++)
