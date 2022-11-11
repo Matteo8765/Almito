@@ -144,7 +144,6 @@ int encerrar()
 int ope1() // Inserir na posição K+1
 {
     int k;
-    char conf = 'N';
     PREMIO val; // variável temporária
     cout << "Você escolheu a operação 1: Inserir na posição K+1.\n";
     if (final < N - 1) //verifica se há espaço na lista
@@ -192,7 +191,6 @@ int ope2() // Procurar nó por nome e inserir novo nó na posição anterior ao 
     string nome;
     int indice;
     bool encontrado = false;
-    char conf = 'N';
     PREMIO val; // variável temporária
     cout << "Você escolheu a operação 2: Procurar nó por nome e inserir novo nó na posição anterior ao nó encontrado.\n";
     if (final < N - 1) //verifica se há espaço na lista
@@ -261,7 +259,6 @@ int ope3() // Procurar um nó por quantidade de prêmios disponível e alterar o
     int quant;
     int indice;
     bool encontrado = false;
-    char conf = 'N';
     PREMIO val; // variável temporária
     cout << "Você escolheu a operação 3: Procurar um nó por quantidade de prêmios disponível e alterar o conteúdo do nó encontrado.\n";
 
@@ -326,7 +323,6 @@ int ope3() // Procurar um nó por quantidade de prêmios disponível e alterar o
 int ope4() // Consultar nó anterior à posição K+1
 {
     int k;
-    char conf = 'N';
     cout << "Você escolheu a operação 4: Consultar o nó anterior à posição K+1.\n"; //É o mesmo que consultar o nó na posição K
     
     cout << "Insira K: ";
@@ -351,7 +347,6 @@ int ope5() // Remover na posição k
     cout << "Você escolheu a operação 5: Remover na posição k.\n";
 
     int k;
-    char conf = 'N';
 
     cout << "Insira K: ";
     cin >> k;
@@ -400,7 +395,6 @@ int ope6() // Procurar um nó por nome e remover o nó na posição anterior ao 
     string nome;
     int indice;
     bool encontrado = false;
-    char conf = 'N';
     PREMIO val; // variável temporária
     cout << "Você escolheu a operação 6: Procurar um nó por nome e remover o nó na posição anterior ao nó encontrado.\n\n";
     
@@ -469,7 +463,6 @@ int ope7() // Verificar se um prêmio pertence à lista e imprimir o conteúdo d
     string nome;
     int indice;
     bool encontrado = false;
-    char conf = 'N';
     PREMIO val; // variável temporária
     cout << "Você escolheu a operação 7: Verificar se um prêmio pertence à lista e imprimir o conteúdo do nó anterior.\n\n";
 
@@ -544,7 +537,6 @@ int ope9() // Procurar um nó por nome e alterar o conteúdo do nó posterior ao
     string nome;
     int indice;
     bool encontrado = false;
-    char conf = 'N';
     PREMIO val; // variável temporária
     cout << "Você escolheu a operação 9: Procurar um nó por nome e alterar o conteúdo do nó posterior ao encontrado.\n";
     
