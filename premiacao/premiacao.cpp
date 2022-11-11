@@ -154,7 +154,6 @@ int ope1() // Inserir na posição K+1
         {
             val = lerNo();
 
-            
             if (confirmar("Você confirma a inserção dos dados? (S/N)"))
             {
                 final++;
@@ -213,8 +212,6 @@ int ope2() // Procurar nó por nome e inserir novo nó na posição anterior ao 
                 cout << "\nNó encontrado ! Por favor insira as informações para o novo nó:\n";
                 val = lerNo();
 
-
-                
                 if (confirmar("Você confirma a inserção dos dados? (S/N)"))
                 {
                     final++;
@@ -235,7 +232,6 @@ int ope2() // Procurar nó por nome e inserir novo nó na posição anterior ao 
             else
             {
                 cout << nome << " não pertence à lista!\n\n";
-
                 return 1;
             }
         }
@@ -255,7 +251,6 @@ int ope2() // Procurar nó por nome e inserir novo nó na posição anterior ao 
 
 int ope3() // Procurar um nó por quantidade de prêmios disponível e alterar o conteúdo do nó encontrado
 {
-
     int quant;
     int indice;
     bool encontrado = false;
@@ -307,7 +302,6 @@ int ope3() // Procurar um nó por quantidade de prêmios disponível e alterar o
         else
         {
             cout << "Não há nenhum nó com " << quant << " prêmios disponíveis na lista!\n\n";
-
             return 1;
         }
     }
@@ -316,7 +310,6 @@ int ope3() // Procurar um nó por quantidade de prêmios disponível e alterar o
         cout << "Lista vazia!\n\n";
         return 1;
     }
-
     return 0;
 }
 
@@ -324,7 +317,6 @@ int ope4() // Consultar nó anterior à posição K+1
 {
     int k;
     cout << "Você escolheu a operação 4: Consultar o nó anterior à posição K+1.\n"; //É o mesmo que consultar o nó na posição K
-    
     cout << "Insira K: ";
     cin >> k;
     k--; //é necessario reduzir k em 1, já que a posição de um nó é igual ao seu índex somado a um.
@@ -344,10 +336,9 @@ int ope4() // Consultar nó anterior à posição K+1
 
 int ope5() // Remover na posição k
 {
-    cout << "Você escolheu a operação 5: Remover na posição k.\n";
-
     int k;
 
+    cout << "Você escolheu a operação 5: Remover na posição k.\n";
     cout << "Insira K: ";
     cin >> k;
     k--; //é necessario reduzir k em 1, já que a posição de um nó é igual ao seu índex somado a um.
@@ -357,7 +348,6 @@ int ope5() // Remover na posição k
         {
             cout << "\n\n";
             imprimirNo(premios, k);
-
             
             if (confirmar("Você confirma a Remoção deste nó? (S/N)"))
             {
@@ -386,7 +376,6 @@ int ope5() // Remover na posição k
         cout << "Lista vazia!\n\n";
         return 1;
     }
-    
     return 0;
 }
 
@@ -440,12 +429,10 @@ int ope6() // Procurar um nó por nome e remover o nó na posição anterior ao 
                 cout << "O nó que você procurou é o primeiro da lista, portanto não há nenhum nó antes dele para remover!\n\n";
                 return 1;
             }
-            
         }
         else
         {
             cout << nome << " não pertence à lista!\n\n";
-
             return 1;
         }
     }
@@ -454,7 +441,6 @@ int ope6() // Procurar um nó por nome e remover o nó na posição anterior ao 
         cout << "Lista vazia!\n\n";
         return 1;
     }
-    
     return 0;
 }
 
@@ -493,12 +479,10 @@ int ope7() // Verificar se um prêmio pertence à lista e imprimir o conteúdo d
                 cout << "O nó que você procurou é o primeiro da lista, portanto não há nenhum nó antes dele para imprimir!\n\n";
                 return 1;
             }
-
         }
         else
         {
             cout << nome << " não pertence à lista!\n\n";
-
             return 1;
         }
     }
@@ -507,7 +491,6 @@ int ope7() // Verificar se um prêmio pertence à lista e imprimir o conteúdo d
         cout << "Lista vazia!\n\n";
         return 1;
     }
-
     return 0;
 }
 
@@ -561,7 +544,6 @@ int ope9() // Procurar um nó por nome e alterar o conteúdo do nó posterior ao
                 cout << "\nNó encontrado !\n Seguem as informações do nó posterior ao encontrado:\n\n";
                 imprimirNo(premios, indice);
 
-                
                 if (confirmar("Este é o nó que você deseja alterar? (S/N)"))
                 {
                     cout << "\nPor favor insira as novas informações para alterar o nó:\n";
@@ -590,12 +572,10 @@ int ope9() // Procurar um nó por nome e alterar o conteúdo do nó posterior ao
                 cout << "O Nó que você procurou é o último da lista, portanto não há nós para alterar depois dele!";
                 return 1;
             }
-            
         }
         else
         {
             cout << nome << " não pertence à lista!\n\n";
-
             return 1;
         }
     }
@@ -623,7 +603,6 @@ int ope10() // Imprimir relatório dos prêmios vendidos e calcular no final o m
         }
         if (total) cout << "\n\nFoi arrecadado um total de R$" << total << " !!!\n\n";
         else cout << "\nNão houve arrecadação. :(";
-
     }
     else
     {
@@ -639,7 +618,6 @@ int ope11() // Imprimir o conteúdo da lista
     if (final > -1)
     {
         imprimirLista(premios);
-            
     }
     else
     {
@@ -666,9 +644,6 @@ int ope12() // Classificar a lista por ordem de quantidade de prêmios disponív
         classificarQuant(exemplo);
         imprimirLista(exemplo);
 
-        
-        
-        
         if (confirmar("Você confirma a Classificação deste nó ? (S/N)"))
         {
             classificarQuant(premios);
@@ -680,7 +655,6 @@ int ope12() // Classificar a lista por ordem de quantidade de prêmios disponív
             cout << "Classificação não confirmada!\n\n";
             return 1;
         }
-
     }
     else
     {
@@ -703,7 +677,6 @@ int ope13() // Imprimir os nós de índice ímpar da lista
                 imprimirNo(premios, i);
             }
         }
-        
     }
     else
     {
@@ -729,7 +702,6 @@ int classificarQuant(PREMIO arr[])
         aux = arr[i];
         arr[i] = arr[indiceMenor];
         arr[indiceMenor] = aux;
-
     }
     return 0;
 }
@@ -740,7 +712,6 @@ int imprimirLista(PREMIO arr[])
     {
         cout << "------------------------------------------------------------------" << endl;
         imprimirNo(arr, i);
-
     }
     return 0;
 }
