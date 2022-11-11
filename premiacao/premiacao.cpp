@@ -84,6 +84,7 @@ int menuInicio(bool firstcall) // firstcall é uma variavel para saber se a fun�
             << " 13 - Imprimir a lista os nós que estão armazenados nos índices impares.\n";
     cout << "Digite a opção desejada: \n";
     cin >> opcao;
+    cout << "\n\n";
     switch (opcao) {
     case 0:
         encerrar();
