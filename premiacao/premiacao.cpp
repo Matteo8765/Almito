@@ -26,6 +26,7 @@ int encerrar();
 int classificar(PREMIO arr[]);
 int imprimirLista(PREMIO arr[]);
 int imprimirNo(PREMIO arr[], int i);
+PREMIO lerNo(void);
 
 int ope1(); // Inserir na posição K+1
 int ope2(); // Procurar nó por nome e inserir novo nó na posição anterior ao nó encontrado
@@ -151,16 +152,7 @@ int ope1() // Inserir na posição K+1
         cin >> k; // como o intuito é inserir na posição k+1, não é necessário fazer nenhuma operação para ajustar à lista, indexada em 0
         if (k >= 0 and k <= final)
         {
-            cout << "\nNome: ";
-            getline(cin >> ws, val.nome);
-            cout << "\nPreço: ";
-            cin >> val.preco;
-            cout << "\nID: ";
-            cin >> val.id;
-            cout << "\nQuantas unidades deste prêmio estão disponíveis? ";
-            cin >> val.quantidade;
-            cout << "\nQuantas unidades deste prêmio já foram vendidas? ";
-            cin >> val.vendidos;
+            val = lerNo();
 
             cout << "Você confirma a inserção dos dados? (S/N)";
             cin >> conf;
@@ -222,16 +214,7 @@ int ope2() // Procurar nó por nome e inserir novo nó na posição anterior ao 
             if (encontrado)
             {
                 cout << "\nNó encontrado ! Por favor insira as informações para o novo nó:\n";
-                cout << "\nNome: ";
-                getline(cin >> ws, val.nome);
-                cout << "\nPreço: ";
-                cin >> val.preco;
-                cout << "\nID: ";
-                cin >> val.id;
-                cout << "\nQuantas unidades deste prêmio estão disponíveis? ";
-                cin >> val.quantidade;
-                cout << "\nQuantas unidades deste prêmio já foram vendidas? ";
-                cin >> val.vendidos;
+                val = lerNo();
 
 
                 cout << "Você confirma a inserção dos dados? (S/N)";
@@ -309,16 +292,7 @@ int ope3() // Procurar um nó por quantidade de prêmios disponível e alterar o
             if (conf == 'S')
             {
                 cout << "\Por favor insira as novas informações para alterar o nó:\n";
-                cout << "\nNome: ";
-                getline(cin >> ws, val.nome);
-                cout << "\nPreço: ";
-                cin >> val.preco;
-                cout << "\nID: ";
-                cin >> val.id;
-                cout << "\nQuantas unidades deste prêmio estão disponíveis? ";
-                cin >> val.quantidade;
-                cout << "\nQuantas unidades deste prêmio já foram vendidas? ";
-                cin >> val.vendidos;
+                val = lerNo();
 
                 cout << "Você confirma a alteração dos dados? (S/N)";
                 cin >> conf;
@@ -615,16 +589,7 @@ int ope9() // Procurar um nó por nome e alterar o conteúdo do nó posterior ao
                 if (conf == 'S')
                 {
                     cout << "\nPor favor insira as novas informações para alterar o nó:\n";
-                    cout << "\nNome: ";
-                    getline(cin >> ws, val.nome);
-                    cout << "\nPreço: ";
-                    cin >> val.preco;
-                    cout << "\nID: ";
-                    cin >> val.id;
-                    cout << "\nQuantas unidades deste prêmio estão disponíveis? ";
-                    cin >> val.quantidade;
-                    cout << "\nQuantas unidades deste prêmio já foram vendidas? ";
-                    cin >> val.vendidos;
+                    val = lerNo();
 
                     cout << "Você confirma a alteração dos dados? (S/N)";
                     cin >> conf;
@@ -823,4 +788,20 @@ int imprimirNo(PREMIO arr[], int indice)
     else cout << "ESGOTADO" << endl;
     cout << "QUANTIDADE DE PREMIOS VENDIDOS: " << arr[indice].vendidos << endl;
     return 0;
+}
+
+PREMIO lerNo(void)
+{
+    PREMIO premio;
+    cout << "\nID: ";
+    cin >> premio.id;
+    cout << "\nNome: ";
+    getline(cin >> ws, premio.nome);
+    cout << "\nPreço: ";
+    cin >> premio.preco;
+    cout << "\nQuantas unidades deste prêmio estão disponíveis? ";
+    cin >> premio.quantidade;
+    cout << "\nQuantas unidades deste prêmio já foram vendidas? ";
+    cin >> premio.vendidos;
+    return premio;
 }
