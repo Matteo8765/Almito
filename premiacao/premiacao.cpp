@@ -27,6 +27,7 @@ int classificar(PREMIO arr[]);
 int imprimirLista(PREMIO arr[]);
 int imprimirNo(PREMIO arr[], int i);
 PREMIO lerNo(void);
+bool confirmar(string mensagem);
 
 int ope1(); // Inserir na posição K+1
 int ope2(); // Procurar nó por nome e inserir novo nó na posição anterior ao nó encontrado
@@ -154,10 +155,8 @@ int ope1() // Inserir na posição K+1
         {
             val = lerNo();
 
-            cout << "Você confirma a inserção dos dados? (S/N)";
-            cin >> conf;
-            conf = toupper(conf);
-            if (conf == 'S')
+            
+            if (confirmar("Você confirma a inserção dos dados? (S/N)"))
             {
                 final++;
                 for (int aux = final; aux > k; aux--)
@@ -217,10 +216,8 @@ int ope2() // Procurar nó por nome e inserir novo nó na posição anterior ao 
                 val = lerNo();
 
 
-                cout << "Você confirma a inserção dos dados? (S/N)";
-                cin >> conf;
-                conf = toupper(conf);
-                if (conf == 'S')
+                
+                if (confirmar("Você confirma a inserção dos dados? (S/N)"))
                 {
                     final++;
                     for (int aux = final; aux > indice; aux--)
@@ -286,18 +283,12 @@ int ope3() // Procurar um nó por quantidade de prêmios disponível e alterar o
             cout << "\nNó encontrado !\n Seguem as informações do nó encontrado:\n\n";
             imprimirNo(premios, indice);
 
-            cout << "Este é o nó que você deseja alterar? (S/N)";
-            cin >> conf;
-            conf = toupper(conf);
-            if (conf == 'S')
+            if (confirmar("Este é o nó que você deseja alterar? (S/N)"))
             {
                 cout << "\Por favor insira as novas informações para alterar o nó:\n";
                 val = lerNo();
 
-                cout << "Você confirma a alteração dos dados? (S/N)";
-                cin >> conf;
-                conf = toupper(conf);
-                if (conf == 'S')
+                if (confirmar("Você confirma a alteração dos dados? (S/N)"))
                 {
                     premios[indice] = val;
                     cout << "Alteração Concluída com sucesso!\n\n";
@@ -372,10 +363,8 @@ int ope5() // Remover na posição k
             cout << "\n\n";
             imprimirNo(premios, k);
 
-            cout << "\n\nVocê confirma a Remoção deste nó? (S/N)";
-            cin >> conf;
-            conf = toupper(conf);
-            if (conf == 'S')
+            
+            if (confirmar("Você confirma a Remoção deste nó? (S/N)"))
             {
                 for (int i = k; i < final; i++)
                 {
@@ -436,10 +425,7 @@ int ope6() // Procurar um nó por nome e remover o nó na posição anterior ao 
                 cout << "\nNó encontrado !\n Seguem as informações do nó anterior ao encontrado:\n\n";
                 imprimirNo(premios, indice);
 
-                cout << "Você confirma a Remoção deste nó? (S/N)";
-                cin >> conf;
-                conf = toupper(conf);
-                if (conf == 'S')
+                if (confirmar("Você confirma a Remoção deste nó? (S/N)"))
                 {
                     for (int i = indice; i < final; i++)
                     {
@@ -583,18 +569,13 @@ int ope9() // Procurar um nó por nome e alterar o conteúdo do nó posterior ao
                 cout << "\nNó encontrado !\n Seguem as informações do nó posterior ao encontrado:\n\n";
                 imprimirNo(premios, indice);
 
-                cout << "Este é o nó que você deseja alterar? (S/N)";
-                cin >> conf;
-                conf = toupper(conf);
-                if (conf == 'S')
+                
+                if (confirmar("Este é o nó que você deseja alterar? (S/N)"))
                 {
                     cout << "\nPor favor insira as novas informações para alterar o nó:\n";
                     val = lerNo();
 
-                    cout << "Você confirma a alteração dos dados? (S/N)";
-                    cin >> conf;
-                    conf = toupper(conf);
-                    if (conf == 'S')
+                    if (confirmar("Você confirma a alteração dos dados? (S/N)"))
                     {
                         premios[indice] = val;
                         cout << "Alteração Concluída com sucesso!\n\n";
@@ -693,11 +674,10 @@ int ope12() // Classificar a lista por ordem de quantidade de prêmios disponív
         classificar(exemplo);
         imprimirLista(exemplo);
 
-        char conf = 'N';
-        cout << "Você confirma a Classificação deste nó? (S/N)";
-        cin >> conf;
-        conf = toupper(conf);
-        if (conf == 'S')
+        
+        
+        
+        if (confirmar("Você confirma a Classificação deste nó ? (S/N)"))
         {
             classificar(premios);
             cout << "Classificação Concluída com sucesso!\n\n";
@@ -804,4 +784,13 @@ PREMIO lerNo(void)
     cout << "\nQuantas unidades deste prêmio já foram vendidas? ";
     cin >> premio.vendidos;
     return premio;
+}
+
+bool confirmar(string mensagem)
+{
+    char conf = 'N';
+    cout << "\n\n" << mensagem << endl;
+    cin >> conf;
+    if (toupper(conf) == 'S') return true;
+    else return false;
 }
