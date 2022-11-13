@@ -47,10 +47,10 @@ int opcao;
 
 const int N = 10;
 PREMIO premios[N] = {
-                        {1, "Celular", 1250.99, 2, 0},
+                        {1, "Celular", 1250.99, 4, 0},
                         {2, "Mouse Gamer", 250.70, 3, 2},
-                        {3, "Pacote de M&Ms", 3, 23, 20},
-                        {4, "Polystation 19", 10000, 10, 3}
+                        {3, "Pacote de M&Ms", 3, 2, 20},
+                        {4, "Polystation 19", 10000, 1, 3}
                     };
 int final = 3; // índice do último item da lista. Caso final seja -1, a lista é vazia
 
@@ -195,7 +195,7 @@ int ope2() // Procurar nó por nome e inserir novo nó na posição anterior ao 
     cout << "Você escolheu a operação 2: Procurar nó por nome e inserir novo nó na posição anterior ao nó encontrado.\n";
     if (final < N - 1) //verifica se há espaço na lista
     {
-        if (final > -1)
+        if (final > -1) //verifica se a lista tem pelo menos um nó
         {
             cout << "Insira o nome do Nó que você deseja procurar: ";
             getline(cin >> ws, nome);
@@ -324,6 +324,7 @@ int ope4() // Consultar nó anterior à posição K+1
     if (k >= 0 and k <= final)
     {
         cout << "\n\n";
+        cout << "Este é o nó encontrado antes da posição " << k + 1 << "+1\n";
         imprimirNo(premios, k);
     }
     else
@@ -348,6 +349,7 @@ int ope5() // Remover na posição k
         if (k >= 0 and k <= final)
         {
             cout << "\n\n";
+            cout << "Este é o nó encontrado na posição " << k + 1 << "\n";
             imprimirNo(premios, k);
             
             if (confirmar("Você confirma a Remoção deste nó? (S/N)"))
@@ -406,7 +408,7 @@ int ope6() // Procurar um nó por nome e remover o nó na posição anterior ao 
             if (indice > 0)
             {
                 indice--;
-                cout << "\nNó encontrado !\n Seguem as informações do nó anterior ao encontrado:\n\n";
+                cout << "\nNó encontrado !\nSeguem as informações do nó anterior ao encontrado:\n\n";
                 imprimirNo(premios, indice);
 
                 if (confirmar("Você confirma a Remoção deste nó? (S/N)"))
@@ -471,7 +473,7 @@ int ope7() // Verificar se um prêmio pertence à lista e imprimir o conteúdo d
             if (indice > 0)
             {
                 indice--;
-                cout << "\nNó encontrado !\n Seguem as informações do nó anterior ao encontrado:\n\n";
+                cout << "\nNó encontrado !\nSeguem as informações do nó anterior ao encontrado:\n\n";
                 imprimirNo(premios, indice);
 
             }
@@ -598,10 +600,12 @@ int ope10() // Imprimir relatório dos prêmios vendidos e calcular no final o m
         {
             if (premios[i].vendidos > 0)
             {
+                cout << "-------------------------------------------------------------------------------------------------------------\n";
                 imprimirNo(premios, i);
                 total += (premios[i].vendidos * premios[i].preco);
             }
         }
+        cout << "-------------------------------------------------------------------------------------------------------------\n";
         if (total) cout << "\n\nFoi arrecadado um total de R$" << total << " !!!\n\n";
         else cout << "\nNão houve arrecadação. :(";
     }
@@ -645,7 +649,7 @@ int ope12() // Classificar a lista por ordem de quantidade de prêmios disponív
         classificarQuant(exemplo);
         imprimirLista(exemplo);
 
-        if (confirmar("Você confirma a Classificação deste nó ? (S/N)"))
+        if (confirmar("Você confirma a Classificação desta Lista? (S/N)"))
         {
             classificarQuant(premios);
             cout << "Classificação Concluída com sucesso!\n\n";
@@ -678,13 +682,13 @@ int ope13() // Imprimir os nós de índice ímpar da lista
                 imprimirNo(premios, i);
             }
         }
+        return 0;
     }
     else
     {
         cout << "Não há nós de índice ímpar na lista!\n\n";
         return 1;
     }
-    return 0;
 }
 
 int classificarQuant(PREMIO arr[])
@@ -692,7 +696,7 @@ int classificarQuant(PREMIO arr[])
     PREMIO aux;
     for (int i = 0; i <= final; i++)
     {
-        int indiceMenor = i;
+        int indiceMenor = i; // Índice do item com menor quantidade de produtos disponiveis
         for (int j = i + 1; j <= final; j++)
         {
             if (arr[j].quantidade < arr[indiceMenor].quantidade)
