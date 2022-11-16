@@ -151,7 +151,7 @@ int ope1() // Inserir na posição K+1
     {
         cout << "Insira K: ";
         cin >> k; // como o intuito é inserir na posição k+1, não é necessário fazer nenhuma operação para ajustar à lista, indexada em 0
-        if (k >= 0 and k <= final)
+        if (k >= 0 and k <= final+1)
         {
             val = lerNo();
 
