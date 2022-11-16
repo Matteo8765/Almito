@@ -278,7 +278,7 @@ int ope3() // Procurar um nó por quantidade de prêmios disponível e alterar o
 
             if (confirmar("Este é o nó que você deseja alterar? (S/N)"))
             {
-                cout << "\Por favor insira as novas informações para alterar o nó:\n";
+                cout << "\nPor favor insira as novas informações para alterar o nó:\n";
                 val = lerNo();
 
                 if (confirmar("Você confirma a alteração dos dados? (S/N)"))
